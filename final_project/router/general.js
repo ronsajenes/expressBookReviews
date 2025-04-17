@@ -46,7 +46,12 @@ public_users.get('/',function (req, res) {
   //Write your code here
   //return res.status(300).json({message: "Yet to be implemented"});
   
-  return res.send(JSON.stringify({books}, null, 4));
+  const get_books = new Promise((resolve,reject) => {
+	resolve(res.send(JSON.stringify({books}, null, 4)));
+  })
+  
+  get_books.then(() => console.log("Promise resolved"));
+  
 });
 
 // Get book details based on ISBN
@@ -56,18 +61,11 @@ public_users.get('/isbn/:isbn',function (req, res) {
   
   const isbn = req.params.isbn;  
   
-  //Creating a promise method. The promise will get resolved when timer times out after 6 seconds.
-  let myPromise = new Promise((resolve,reject) => {
-    setTimeout(() => {
-      resolve("Promise resolved")
-    },6000)})
-	
-  //Call the promise and wait for it to be resolved and then print a message.
-  myPromise.then((successMessage) => {
+  const myPromise = new Promise((resolve,reject) => {
 	res.send(books[isbn]);
   })
   
-  
+  myPromise.then(() => console.log("Promise resolved"));
   
 });
   
@@ -78,8 +76,13 @@ public_users.get('/author/:author',function (req, res) {
   
   const author = req.params.author;
   let filtered_author = (Object.values(books).filter(book => book.author === author));
-  res.send(filtered_author);
-
+  
+  const myPromise = new Promise((resolve,reject) => {
+	res.send(filtered_author);
+  })
+  
+  myPromise.then(() => console.log("Promise resolved"));
+  
 });
 
 
@@ -90,7 +93,13 @@ public_users.get('/title/:title',function (req, res) {
   
   const title = req.params.title;
   let filtered_title = (Object.values(books).filter(book => book.title === title));
-  res.send(filtered_title);
+  
+  const myPromise = new Promise((resolve,reject) => {
+	res.send(filtered_title);
+  })
+  
+  myPromise.then(() => console.log("Promise resolved"));
+  
 });
 
 //  Get book review

@@ -46,7 +46,17 @@ public_users.get('/',function (req, res) {
   //Write your code here
   //return res.status(300).json({message: "Yet to be implemented"});
   
-  return res.send(JSON.stringify({books}, null, 4));
+  //Creating a promise method. The promise will get resolved when timer times out after 6 seconds.
+  let myPromise = new Promise((resolve,reject) => {
+    setTimeout(() => {
+      resolve("Promise resolved")
+    },6000)})
+	
+  //Call the promise and wait for it to be resolved and then print a message.
+  myPromise.then((successMessage) => {
+	return res.send(JSON.stringify({books}, null, 4));
+  })
+  
 });
 
 // Get book details based on ISBN
@@ -55,7 +65,18 @@ public_users.get('/isbn/:isbn',function (req, res) {
   //return res.status(300).json({message: "Yet to be implemented"});
   
   const isbn = req.params.isbn;  
-  res.send(books[isbn]);
+  
+  //Creating a promise method. The promise will get resolved when timer times out after 6 seconds.
+  let myPromise = new Promise((resolve,reject) => {
+    setTimeout(() => {
+      resolve("Promise resolved")
+    },6000)})
+	
+  //Call the promise and wait for it to be resolved and then print a message.
+  myPromise.then((successMessage) => {
+	res.send(books[isbn]);
+  })
+  
 });
   
 // Get book details based on author
@@ -65,8 +86,18 @@ public_users.get('/author/:author',function (req, res) {
   
   const author = req.params.author;
   let filtered_author = (Object.values(books).filter(book => book.author === author));
-  res.send(filtered_author);
-
+  
+  //Creating a promise method. The promise will get resolved when timer times out after 6 seconds.
+  let myPromise = new Promise((resolve,reject) => {
+    setTimeout(() => {
+      resolve("Promise resolved")
+    },6000)})
+	
+  //Call the promise and wait for it to be resolved and then print a message.
+  myPromise.then((successMessage) => {
+	res.send(filtered_author);
+  })
+  
 });
 
 
@@ -77,7 +108,18 @@ public_users.get('/title/:title',function (req, res) {
   
   const title = req.params.title;
   let filtered_title = (Object.values(books).filter(book => book.title === title));
-  res.send(filtered_title);
+  
+  //Creating a promise method. The promise will get resolved when timer times out after 6 seconds.
+  let myPromise = new Promise((resolve,reject) => {
+    setTimeout(() => {
+      resolve("Promise resolved")
+    },6000)})
+	
+  //Call the promise and wait for it to be resolved and then print a message.
+  myPromise.then((successMessage) => {
+	res.send(filtered_title);
+  })
+  
 });
 
 //  Get book review
